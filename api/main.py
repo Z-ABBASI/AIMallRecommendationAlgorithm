@@ -1,12 +1,20 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from database import engine
+import models  # <-- IMPORTANT: ensures Item/Tag/etc classes are loaded
+from models import Base
+
 app = FastAPI()
+
+@app.on_event("startup")
+def on_startup():
+    Base.metadata.create_all(bind=engine)
 
 class Event(BaseModel):
     user_id: str
     item_id: str
-    event_type: str  # "impression" | "click" | "like" | etc.
+    event_type: str
 
 @app.get("/health")
 def health():
