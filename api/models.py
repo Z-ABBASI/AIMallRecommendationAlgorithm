@@ -15,7 +15,7 @@ class Mall(Base):
     aesthetic = Column(String(120))      # can later normalize into tags
     opening = Column(Integer)
     closing = Column(Integer)
-    subculture = Column(Integer)
+    subculture = Column(String)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 
@@ -27,8 +27,8 @@ class Store(Base):
     category = Column(String(120))
     subcategory = Column(String(120))
     mall_based = Column(Boolean, default=False)
-    exclusive = Column(Boolean, default=False)
-    subculture = Column(Integer)
+    aesthetic = Column(String)
+    subculture = Column(String)
     price_range = Column(String(50))
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
@@ -41,8 +41,8 @@ class Food(Base):
     category = Column(String(120))
     cuisine = Column(String(120))
     mall_based = Column(Boolean, default=False)
-    exclusive = Column(Boolean, default=False)
-    subculture = Column(Integer)
+    aesthetic = Column(String)
+    subculture = Column(String)
     price_range = Column(String(50))
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
@@ -54,7 +54,7 @@ class Activity(Base):
     name = Column(String(200), nullable=False, unique=True, index=True)
     category = Column(String(120))
     subcategory = Column(String(120))
-    subculture = Column(Integer)
+    subculture = Column(String)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 
